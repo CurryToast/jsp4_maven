@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "mybatis-3-mapper.dtd">
+
+<mapper namespace="tblproducts">
+	<!-- 동적 쿼리 예시 : 상품 조회에 필요한 검색필터 -->
+	<select id="search" resultType="ProductDto" parameterType="java.util.Map">
+		select * from tbl_product
+		<where>
+			<!-- if의 test 값은 조건식입니다. -->
+			<if test="keyword!=null">
+				pname like '%' || #{keyword} || '%'
+			</if>
+			<if test="category!=null">
+				<!--
+					필요한 경우에만 and 추가
+					앞의 조건식이 없으면 and는 trim
+				-->
+				<trim prefix="and">
+					category = #{category}
+				</trim>
+			</if>
+			<!-- test 논리 연산 : and or -->
+			<if test="from!=null and to!=null">
+				<trim prefix="and">
+					price between #{from} and #{to}
+				</trim>
+			</if>
+		</where>
+		<if test="column!=null">
+			ORDER BY ${column} 
+			<if test="desc!=null">DESC</if>
+		</if>
+	</select>
+	<!-- 리턴타입이 List일 때에는 제너릭타입만 설정하면 됩니다. -->
+	<select id="selectAll" resultType="ProductDto">
+		select * from tbl_product
+	</select>
+	<select id="selectByCategory" parameterType="String" resultType="ProductDto">
+		SELECT * FROM TBL_PRODUCT WHERE CATEGORY = #{category} ORDER BY PNAME
+	</select>
+	<select id="selectByPname" parameterType="String" resultType="ProductDto">
+		SELECT * FROM TBL_PRODUCT WHERE PNAME LIKE '%' || #{pname} || '%' ORDER BY CATEGORY
+	</select>
+	<select id="selectCategory" resultType="day4.mybatis.dto.CategoryDto">
+		select * from tbl_category order by code
+	</select>
+	<insert id="insert" parameterType="ProductDto">
+		INSERT INTO TBL_PRODUCT VALUES (#{pcode},#{category},#{pname},#{price})
+	</insert>
+</mapper>

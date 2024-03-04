@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	list-style: none;
+}
+
+body > ul {
+	min-width: 800px;
+	padding: 0;
+}
+
+.list-header > ul > li {
+	font-size: 1.1rem;
+	font-weight: 800;
+}
+
+ul > li > ul {
+	display: grid;
+	grid-template-columns: 2fr 1fr 3fr 2fr;
+	border-bottom: 1px solid black;
+	padding: 5px 2px;
+}
+
+ul > li:not(.list-header) > ul {
+	margin-left: 2px;
+}
+
+ul > li:not(.list-header) > ul > li {
+	margin-left: 1px;
+}
+
+select,input {
+   padding: 0.5rem  0.02rem;
+   width : 12rem;
+}
+button {
+   padding: 0.4rem  0.02rem;
+   width : 8rem;
+   cursor: pointer; 
+}
+.search {
+   padding: 0.5rem  0.02rem;
+}

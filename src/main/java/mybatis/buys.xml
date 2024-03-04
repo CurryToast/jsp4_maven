@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "mybatis-3-mapper.dtd">
+
+<!--
+	이 파일의 이름은 SQL 매퍼입ㄴ디ㅏ. 실행할 sql만 모아놓은 파일입니다.
+	1) dml(insert, update, delete, select)과 동일한 태그에 작성하기
+	2) dao 메소드에서 지정했던 메소드의 인자, 리턴타입 정하기
+	**주의 : 자바 객체의 변수(속성)명과 파라미터(기호 #{} 안에 입력) 이름을 동일하게 해야합니다.
+				파라미터가 MAP일때는 key 이름과 파라미터(#{}) 이름 동일하게 해야합니다.
+				기본 형식, String은 변수 선언 키워드와 동일하게 합니다.
+-->
+<mapper namespace="tblbuy">
+	<!-- 리턴타입이 List일 때에는 제너릭타입만 설정하면 됩니다. -->
+	<select id="selectAll" resultType="BuyDto">
+		select * from tbl_buy order by buy_date desc
+	</select>
+	<select id="selectById" parameterType="String" resultType="BuyDto">
+		SELECT BUY_IDX, tp.PCODE, PNAME, PRICE, QUANTITY, BUY_DATE FROM TBL_BUY tb JOIN TBL_PRODUCT tp ON tb.PCODE = tp.PCODE WHERE tb.CUSTOMID = #{customid} ORDER BY BUY_DATE DESC
+	</select>
+	<!-- insert, update, delete는 리턴 타입 지정 안합니다. (그래도 값은 리턴해줍니다.) -->
+	<insert id="insert" parameterType="BuyDto">
+		INSERT INTO TBL_BUY values (buy_pk_seq.nextval, #{customid}, #{pcode}, #{quantity}, sysdate)
+	</insert>
+	<update id="update" parameterType="java.util.Map">
+		update tbl_buy set quantity = #{quantity} where buy_idx = #{buy_idx}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from tbl_buy where buy_idx = #{buy_idx}
+	</delete>
+</mapper>
