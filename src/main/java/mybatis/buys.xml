@@ -14,7 +14,7 @@
 <mapper namespace="tblbuy">
 	<!-- 리턴타입이 List일 때에는 제너릭타입만 설정하면 됩니다. -->
 	<select id="selectAll" resultType="BuyDto">
-		select * from tbl_buy order by buy_date desc
+		select BUY_IDX, tb.customid, tp.PCODE, PNAME, PRICE, QUANTITY, BUY_DATE from tbl_buy tb JOIN TBL_PRODUCT tp ON tb.PCODE = tp.PCODE order by buy_date desc
 	</select>
 	<select id="selectById" parameterType="String" resultType="BuyDto">
 		SELECT BUY_IDX, tp.PCODE, PNAME, PRICE, QUANTITY, BUY_DATE FROM TBL_BUY tb JOIN TBL_PRODUCT tp ON tb.PCODE = tp.PCODE WHERE tb.CUSTOMID = #{customid} ORDER BY BUY_DATE DESC
