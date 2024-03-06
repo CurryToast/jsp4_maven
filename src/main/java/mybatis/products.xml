@@ -49,4 +49,7 @@
 	<insert id="insert" parameterType="ProductDto">
 		INSERT INTO TBL_PRODUCT VALUES (#{pcode},#{category},#{pname},#{price})
 	</insert>
+	<delete id="delete" parameterType="String">
+		DELETE FROM TBL_PRODUCT WHERE PCODE = #{pcode}
+	</delete>
 </mapper>

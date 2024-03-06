@@ -16,9 +16,10 @@ public class RequestControllerMapping {
 		mapping.put(new RequestMap("/api/customer/list", "GET"), new ApiCustomerListController());
 		mapping.put(new RequestMap("/api/customer", "POST"), new ApiCustomerPostController());
 		mapping.put(new RequestMap("/api/customer", "GET"), new ApiCustomerGetController());
-		mapping.put(new RequestMap("/api/product/list", "GET"), new ApiProductListController());
+		mapping.put(new RequestMap("/api/product", "GET"), new ApiProductListController());
 		mapping.put(new RequestMap("/api/product", "POST"), new ApiProdudctPostController());
-		mapping.put(new RequestMap("/api/product/search", "PUT"), new ApiProductSearchController());
+		mapping.put(new RequestMap("/api/product", "PUT"), new ApiProductSearchController());
+		mapping.put(new RequestMap("/api/product", "DELETE"), new ApiProdudctDeleteController());
 		mapping.put(new RequestMap("/api/buy/list", "GET"), new ApiBuyListController());
 	}
 	

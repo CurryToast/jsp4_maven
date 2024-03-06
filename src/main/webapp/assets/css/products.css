@@ -2,9 +2,17 @@
 body { 	padding: 1rem; }
 .content , h3 { margin-left : 3rem; padding-left :1rem; }
 h3 { 	padding : 1rem; }
-ul { 	list-style: none;  	width : 65rem; }
+ul {
+	list-style: none;
+	width : fit-content;
+}
 /* forEach 안에 있는 ul의 class 이름이 row 입니다. */
-ul .row { display: flex; }
+#list > li:not(:first-of-type) {
+	cursor: pointer;
+}
+ul .row {
+	display: flex;
+}
 ul .row > li {
 	padding: 0.5rem  0.02rem;
 	/* 컬럼(열)에 해당하는 li는 너비를 15rem으로 통일 */
@@ -12,6 +20,17 @@ ul .row > li {
 	border-bottom : 1px  dashed gray;
 	text-align: right;
 }
+ul .row + div {
+	overflow: hidden;
+	height: 50px;
+	transition-duration: 0.3s;
+	display: flex;
+	align-items: center;
+}
+ul .row + div.hidden {
+	height: 0;
+}
+
 /* 첫번째 번호 컬럼은 너비를 15에서 2로 변경 */
 .row > li:first-child { width : 2rem; }
 /* 세번째 이름 컬럼은 너비를 15에서 10으로 변경 */
@@ -35,10 +54,9 @@ button {
    padding: 0.5rem  0.02rem;
 }
 ul#list {
-	padding: 2rem;
+	padding: 2rem 0;
 }
 form div p {
 	display: inline-block;
 	margin: 0;
 }
-

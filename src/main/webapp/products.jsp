@@ -41,11 +41,9 @@
 	<hr>
 	<button id="new">상품 등록</button>
 	<ul id="list">
-		<li class="list-header">
-		</li>
 	</ul>
-	<!-- The Modal -->
-    <div class="modal">
+	<!-- Register Modal -->
+    <div id="registerModal" class="modal">
        <div class="modal-dialog">
           <div class="modal-content">
              <div class="modal-header">
@@ -84,11 +82,54 @@
           </div>
        </div>
     </div>
-    <!-- 모달 끝 -->
+    <!-- 등록 모달 끝 -->
+    <!-- Modify Modal -->
+    <%-- <div id="modifyModal" class="modal">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h4 class="modal-title">상품 정보 수정</h4>
+             </div>
+             <div class="modal-body">
+                <ul>
+                   <li>
+                   	  <p>상품 코드</p>
+                      <input type="text" id="pcode" readonly="readonly">
+                   </li>
+                   <li>
+                      <select id="category">
+                         <option value="">카테고리 선택</option>
+                         <c:forEach items="${categoryList}" var="cate">
+                            <option value="${cate.code}" >
+                               <c:out value="${cate.name}" />(<c:out value="${cate.code}" />)
+                            </option>
+                         </c:forEach>
+                      </select>
+                   </li>
+                   <li>
+                      <input type="text" id="pname" placeholder="상품명을 입력하세요.">
+                   </li>
+                   <li>
+                      <input type="number" id="price" placeholder="가격을 입력하세요.">
+                   </li>
+                   <li>
+                      <button id="post">저장</button>&nbsp;&nbsp;&nbsp;<button id="clear">다시쓰기</button>
+                   </li>
+                </ul>
+             </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+             </div>
+          </div>
+       </div>
+    </div> --%>
+    <!-- 수정 모달 끝 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
 		const temp = '${category}';
-		const modal = new bootstrap.Modal(document.querySelector('.modal'));
+		const regModal = new bootstrap.Modal(document.querySelector('#registerModal'));
+		const modModal = new bootstrap.Modal(document.querySelector('#modifyModal'));
 	</script>
 	<!-- 위의 변수 temp는 search.js와 공유합니다. -->
 	<script type="text/javascript" src="assets/js/productApi_search.js"></script>

@@ -43,7 +43,7 @@ const save = function() {
 	}
 }
 document.querySelector("#new").addEventListener('click', () => {
-	modal.show();
+	regModal.show();
 });
 document.querySelector('#post').addEventListener('click', save);
 document.querySelector('#clear').addEventListener('click', clear);

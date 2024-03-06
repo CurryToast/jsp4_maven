@@ -55,4 +55,12 @@ public class MybatisProductDao {
 		sqlSession.close();
 		return result;
 	}
+	
+	public int delete(String pcode) {
+		SqlSession sqlSession = sessionFactory.openSession();
+		int result = sqlSession.delete("tblproducts.delete", pcode);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
 }
