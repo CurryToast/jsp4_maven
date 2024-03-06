@@ -18,6 +18,9 @@ const searchProductList = () => {
 	
 	const xhr = new XMLHttpRequest();
 
+	// PUT은 REST 방식에서 수정동작을 의미하지만, 검색값을 페이로드 전달하기 위해 사용해봅시다.
+	// node.js 서버와 동작할 때는 주의해야 합니다. 우리 예제에서는 PUT대신 POST를 사용해도 됩니다.
+	// PUT, PATCH, DELETE 등 다른 메소드 방식도 REST API에 있다는 것을 보여주는 예시입니다.
 	xhr.open('PUT', 'api/product/search');
 	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	xhr.send(jsStr);
